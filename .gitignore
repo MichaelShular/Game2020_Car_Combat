@@ -1,6 +1,7 @@
 DerivedDataCache
 Intermediate
 Saved
+.snl
 .vscode
 .vs
 *.VC.db
