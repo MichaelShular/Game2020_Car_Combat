@@ -11,3 +11,5 @@ Saved
 *.suo
 *.xcodeproj
 *.xcworkspace
+.dll
+.pbd
