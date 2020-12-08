@@ -24,6 +24,8 @@ public:
 	void OnHandbrakePressed();
 	void OnHandbrakeReleased();
 
+	void ResetVehicle();
+
 protected:
 	UPROPERTY(Category = Camera, EditDefaultsOnly, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))
 		class USpringArmComponent* SpringArm;
