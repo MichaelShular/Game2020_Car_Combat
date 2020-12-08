@@ -64,7 +64,7 @@ void AMyWheeledVehicle::SetupPlayerInputComponent(UInputComponent* PlayerInputCo
 	
 	PlayerInputComponent->BindAction("Handbrake", IE_Pressed, this, &AMyWheeledVehicle::OnHandbrakePressed);
 	PlayerInputComponent->BindAction("Handbrake", IE_Released, this, &AMyWheeledVehicle::OnHandbrakeReleased);
-
+	PlayerInputComponent->BindAction("Reset", IE_Pressed, this, &AMyWheeledVehicle::ResetVehicle);
 }
 
 void AMyWheeledVehicle::ApplyThrottle(float val)
@@ -85,4 +85,13 @@ void AMyWheeledVehicle::OnHandbrakePressed()
 void AMyWheeledVehicle::OnHandbrakeReleased()
 {
 	GetVehicleMovementComponent()->SetHandbrakeInput(false);
+}
+
+void AMyWheeledVehicle::ResetVehicle()
+{
+	float Xpos, Ypos;
+	Xpos = GetActorLocation().X;
+	Ypos = GetActorLocation().Y;
+	SetActorLocation({ Xpos, Ypos, 30 }, false, NULL, ETeleportType::TeleportPhysics);
+	SetActorRelativeRotation({ 0, 0, 0 }, false, NULL, ETeleportType::TeleportPhysics);
 }
