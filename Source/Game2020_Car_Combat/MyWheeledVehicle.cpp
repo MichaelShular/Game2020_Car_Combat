@@ -19,11 +19,11 @@ AMyWheeledVehicle::AMyWheeledVehicle(){
 	Vehicle4W->MaxNormalizedTireLoad = 2.0f;
 	Vehicle4W->MaxNormalizedTireLoadFiltered = 2.0f;
 
-	Vehicle4W->MaxEngineRPM = 5700.0f;
+	Vehicle4W->MaxEngineRPM = 8000.0f;
 	Vehicle4W->EngineSetup.TorqueCurve.GetRichCurve()->Reset();
 	Vehicle4W->EngineSetup.TorqueCurve.GetRichCurve()->AddKey(0.0f, 400.0f);
 	Vehicle4W->EngineSetup.TorqueCurve.GetRichCurve()->AddKey(1890.0f, 500.0f);
-	Vehicle4W->EngineSetup.TorqueCurve.GetRichCurve()->AddKey(5730.0f, 400.0f);
+	Vehicle4W->EngineSetup.TorqueCurve.GetRichCurve()->AddKey(7730.0f, 400.0f);
 
 	Vehicle4W->SteeringCurve.GetRichCurve()->Reset();
 	Vehicle4W->SteeringCurve.GetRichCurve()->AddKey(0.0f, 1.0f);
@@ -40,16 +40,19 @@ AMyWheeledVehicle::AMyWheeledVehicle(){
 	SpringArm = CreateDefaultSubobject<USpringArmComponent>(TEXT("SpringArm"));
 	SpringArm->SetupAttachment(RootComponent);
 	SpringArm->TargetArmLength = 250.0f;
-	SpringArm->bUsePawnControlRotation = true;
+	SpringArm->bInheritRoll = false;
+	SpringArm->bInheritPitch = false;
 
 	Camera = CreateDefaultSubobject<UCameraComponent>(TEXT("ChaseCamera"));
 	Camera->SetupAttachment(SpringArm, USpringArmComponent::SocketName);
 	Camera->FieldOfView = 90.0f;
+
 }
 
 void AMyWheeledVehicle::Tick(float DeltaTime)
 {	
 	Super::Tick(DeltaTime);
+
 }
 
 void AMyWheeledVehicle::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
