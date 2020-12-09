@@ -89,9 +89,11 @@ void AMyWheeledVehicle::OnHandbrakeReleased()
 
 void AMyWheeledVehicle::ResetVehicle()
 {
-	float Xpos, Ypos;
+	float Xpos, Ypos, Zpos;
 	Xpos = GetActorLocation().X;
 	Ypos = GetActorLocation().Y;
-	SetActorLocation({ Xpos, Ypos, 30 }, false, NULL, ETeleportType::TeleportPhysics);
+	Zpos = GetActorLocation().Z + 30;
+	SetActorLocation({ Xpos, Ypos, Zpos }, false, NULL, ETeleportType::TeleportPhysics);
 	SetActorRelativeRotation({ 0, 0, 0 }, false, NULL, ETeleportType::TeleportPhysics);
+	
 }
